@@ -6,6 +6,7 @@
 package gestiondesfactures;
 
 import gestiondesfactures.entite.Facture;
+import gestiondesfactures.utis.MyConnection;
 
 /**
  *
@@ -17,9 +18,11 @@ public class GestionDesFactures {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        MyConnection.getMyCnx();
     Facture f=new Facture();
     
-    f.calcul(c)
+
     }
+    
     
 }

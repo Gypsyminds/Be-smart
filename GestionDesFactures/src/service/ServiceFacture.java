@@ -40,7 +40,11 @@ public class ServiceFacture {
         }
     }
     
-    public void ajouterPersonne1(Facture f){
+    /**
+     *
+     * @param f
+     */
+    public void ajouterFacture1(Facture f){
         try {
             String req = "INSERT INTO facture (client,cat,montanttot) values (?,?,?)";
             PreparedStatement pst = (PreparedStatement) cnx.prepareStatement(req);

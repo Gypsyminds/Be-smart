@@ -8,8 +8,10 @@ package service;
 import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.Statement;
 import gestiondesfactures.entite.Categorie;
+import gestiondesfactures.entite.Client;
 import gestiondesfactures.entite.Facture;
 import gestiondesfactures.utis.MyConnection;
+import java.sql.Array;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -42,8 +44,8 @@ public class ServiceFacture {
         try {
             String req = "INSERT INTO facture (client,cat,montanttot) values (?,?,?)";
             PreparedStatement pst = (PreparedStatement) cnx.prepareStatement(req);
-            pst.setString(1, f.getClient());
-            pst.setString(2, f.getCat());
+            pst.setArray(1, (Array) f.getClient());
+            pst.setArray(2, (Array) f.getCat());
             pst.setFloat(3, f.getMontanttot());
             pst.executeUpdate();
             System.out.println("facture added !");
@@ -59,7 +61,7 @@ public class ServiceFacture {
             Statement st = (Statement) cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while(rs.next()){
-                Facture f = new Facture(rs.getString(1), rs.getString(2), rs.getString(3), rs.getfloat(4));
+                Facture f = new Facture(rs.getString(1), (Client)rs.getObject(2), (Categorie)rs.getObject(3), rs.getFloat(4));
                 factures.add(f);
             }
         } catch (SQLException ex) {

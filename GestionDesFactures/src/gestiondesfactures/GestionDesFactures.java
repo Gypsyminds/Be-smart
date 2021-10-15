@@ -20,6 +20,7 @@ public class GestionDesFactures {
     public static void main(String[] args) {
         MyConnection.getMyCnx();
         Facture f=new Facture();
+        
     
 
     }

@@ -95,10 +95,10 @@ public class ServiceFacture {
            
         }
    }   
-     public  void modifierFacture1 (String id ,String clientId,String categoryId){
+     public  void modifierFacture1 (String id ,String clientId,String categoryId,float montanttot){
   
         try {
-            String req = "UPDATE `facture`SET client='"+clientId+"',categorie='"+categoryId+"',WHERE id='" + id + "'";
+            String req = "UPDATE `facture`SET client='"+clientId+"',categorie='"+categoryId+"',montanttot='"+montanttot+"',WHERE id='" + id + "'";
               PreparedStatement pst = (PreparedStatement) cnx.prepareStatement(req);
                pst.executeUpdate();
          

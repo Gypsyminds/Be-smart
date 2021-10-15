@@ -95,7 +95,7 @@ public class ServiceFacture {
            
         }
    }   
-     public  void modifierFacture1 (String id ,long clientId,long categoryId){
+     public  void modifierFacture1 (String id ,String clientId,String categoryId){
   
         try {
             String req = "UPDATE `facture`SET client='"+clientId+"',categorie='"+categoryId+"',WHERE id='" + id + "'";

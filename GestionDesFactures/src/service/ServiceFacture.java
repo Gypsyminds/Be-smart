@@ -95,14 +95,12 @@ public class ServiceFacture {
            
         }
    }   
-     public  void modifierFacture1 (String id ,long clientId){
+     public  void modifierFacture1 (String id ,long clientId,long categoryId){
   
         try {
-            String req = "UPDATE `facture`SET client='"+clientId+"'";
-//             = "UPDATE `user`SET nom='" + nom + "',prenom='" + prenom+"' , cin='" + cin + "', email='" + email + "' , numeroTel='" + numeroTel + "' , dob='" + dob + "' , adresse='" + adresse + "' ,WHERE id='" + id + "'";
-            PreparedStatement pst = (PreparedStatement) cnx.prepareStatement(req);
-           
-            pst.executeUpdate();
+            String req = "UPDATE `facture`SET client='"+clientId+"',categorie='"+categoryId+"',WHERE id='" + id + "'";
+              PreparedStatement pst = (PreparedStatement) cnx.prepareStatement(req);
+               pst.executeUpdate();
          
         } catch (SQLException ex) {
              System.err.println(ex.getMessage());

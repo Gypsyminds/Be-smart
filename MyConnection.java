@@ -3,42 +3,44 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.esprit.utils;
+package Client.cnx;
 
 import com.mysql.jdbc.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-/**
- *
- * @author mezri
- */
 public class MyConnection {
-    private String url = "jdbc:mysql://localhost:3306/user_db";
-    private String user = "root";
-    private String pwd = "";
-    private Connection cnx;
+    private String url="jdbc:mysql://localhost:3306/reclamationclients";
+    private String user ="root";
+    private String pwd ="";
+    private Connection cnxx;
     
-    private static MyConnection myCnx;
+    private static  MyConnection mycnx;
 
     private MyConnection() {
         try {
-            cnx = (Connection) DriverManager.getConnection(url, user, pwd);
-            System.out.println("Connected !");
-        } catch (SQLException ex) {
+            cnxx =(Connection) DriverManager.getConnection(url, user, pwd);
+            System.out.println("connected!");
+            
+            } 
+        catch (SQLException ex) {
             System.err.println(ex.getMessage());
-        }
-    }
+                                }
+                            }
     
-    public Connection getConnection(){
-        return cnx;
-    }
-    
-    public static MyConnection getMyCnx(){
-        if(myCnx == null){
-            myCnx = new MyConnection();
-        }
-        return myCnx;
-    }
-    
+            
+            
+ public Connection getConnection() {
+               return cnxx;
+           }
+public static MyConnection getMycnx(){
+ if (mycnx == null){
+     mycnx = new MyConnection ();
+     return mycnx;     
+} 
+ return mycnx;
 }
+}
+
+
+

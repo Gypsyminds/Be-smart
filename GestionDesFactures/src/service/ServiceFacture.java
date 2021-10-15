@@ -82,4 +82,31 @@ public class ServiceFacture {
        return s;
        
        }
+     public  void supprimerFacture1 (String id ){
+  
+        try {
+            String req = "DELETE FROM facture WHERE id= '"+id+"'" ;
+            PreparedStatement pst = (PreparedStatement) cnx.prepareStatement(req);
+           
+            pst.executeUpdate();
+         
+        } catch (SQLException ex) {
+             System.err.println(ex.getMessage());
+           
+        }
+   }   
+     public  void modifierFacture1 (String id ,long clientId){
+  
+        try {
+            String req = "UPDATE `facture`SET client='"+clientId+"'";
+//             = "UPDATE `user`SET nom='" + nom + "',prenom='" + prenom+"' , cin='" + cin + "', email='" + email + "' , numeroTel='" + numeroTel + "' , dob='" + dob + "' , adresse='" + adresse + "' ,WHERE id='" + id + "'";
+            PreparedStatement pst = (PreparedStatement) cnx.prepareStatement(req);
+           
+            pst.executeUpdate();
+         
+        } catch (SQLException ex) {
+             System.err.println(ex.getMessage());
+           
+        }
+   } 
 }

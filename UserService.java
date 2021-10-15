@@ -5,15 +5,24 @@
  */
 package edu.esprit.services;
 
-import com.mysql.jdbc.Connection;
+//import com.mysql.jdbc.Connection;
+import java.sql.Connection;
+
 import com.mysql.jdbc.PreparedStatement;
-import com.mysql.jdbc.Statement;
+//import com.mysql.jdbc.Statement;
+import java.sql.Statement;
 import edu.esprit.entities.User;
 import edu.esprit.utils.MyConnection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
+import java.sql.DriverManager;
+import java.util.logging.Level;
+
+
+
 
 /**
  *
@@ -22,6 +31,7 @@ import java.util.List;
 public class UserService {
     
     private Connection cnx;
+    Statement st;
     public UserService() {
         cnx = MyConnection.getMyCnx().getConnection();
     }
@@ -69,5 +79,33 @@ public class UserService {
             System.err.println(ex.getMessage());
         }
         return users;
+    }
+    
+    //update the db
+    public void update(int id , String nom, String prenom , int cin , String email , int numeroTel , String dob , String adresse) {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            cnx = DriverManager.getConnection("jdbc:mysql://localhost:3306/user_db", "root", "");
+            String sql = "UPDATE `user`SET nom='" + nom + "',prenom='" + prenom+"' , cin='" + cin + "', email='" + email + "' , numeroTel='" + numeroTel + "' , dob='" + dob + "' , adresse='" + adresse + "' ,WHERE id='" + id + "'";
+            st = cnx.createStatement();
+            st.execute(sql);
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+//        fetch();
+    }
+    
+    //delete details in the db
+    public void delete(int id) {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            cnx = DriverManager.getConnection("jdbc:mysql://localhost:3306/user_db", "root", "");
+            String sql = "DELETE FROM `user` WHERE id='" + id + "'";
+            st = cnx.createStatement();
+            st.execute(sql);
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+//        fetch();
     }
 }

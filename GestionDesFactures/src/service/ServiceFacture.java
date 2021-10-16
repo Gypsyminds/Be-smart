@@ -29,7 +29,7 @@ public class ServiceFacture {
         cnx = MyConnection.getMyCnx().getConnection();
     }
     
-    public void ajouterFacture (Facture f){
+   /* public void ajouterFacture (Facture f){
         try {
             String req = "INSERT INTO gestiondesfactures  (client,cat,montanttot) values ('"+f.getClient()+"','"+f.getCat()+"','"+f.getMontanttot()+"')";
             Statement st = (Statement) cnx.createStatement();

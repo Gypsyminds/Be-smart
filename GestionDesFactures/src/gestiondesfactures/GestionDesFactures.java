@@ -5,6 +5,7 @@
  */
 package gestiondesfactures;
 
+import gestiondesfactures.entite.Client;
 import gestiondesfactures.entite.Facture;
 import gestiondesfactures.utis.MyConnection;
 
@@ -20,6 +21,8 @@ public class GestionDesFactures {
     public static void main(String[] args) {
         MyConnection.getMyCnx();
         Facture f=new Facture();
+        Client c=new Client();
+        f.setClient(c);
         
     
 

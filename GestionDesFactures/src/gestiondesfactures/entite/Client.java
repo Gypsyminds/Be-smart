@@ -12,22 +12,18 @@ package gestiondesfactures.entite;
 public class Client {
     private String nom ;
     private String prenom ;
-    private String id ;
+    private Integer id ;
     private String adr ;
-    private String[] cat;
-    private String[] factures ;
 
     public Client() {
     }
     
 
-    public Client(String nom, String prenom, String id, String adr, String[] cat, String[] factures) {
+    public Client(String nom, String prenom, Integer id, String adr) {
         this.nom = nom;
         this.prenom = prenom;
         this.id = id;
         this.adr = adr;
-        this.cat = cat;
-        this.factures = factures;
     }
 
     public String getNom() {
@@ -46,11 +42,11 @@ public class Client {
         this.prenom = prenom;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -62,25 +58,13 @@ public class Client {
         this.adr = adr;
     }
 
-    public String[] getCat() {
-        return cat;
-    }
-
-    public void setCat(String[] cat) {
-        this.cat = cat;
-    }
-
-    public String[] getFactures() {
-        return factures;
-    }
-
-    public void setFactures(String[] factures) {
-        this.factures = factures;
-    }
-
     @Override
     public String toString() {
-        return "Client{" + "nom=" + nom + ", prenom=" + prenom + ", id=" + id + ", adr=" + adr + ", cat=" + cat + ", factures=" + factures + '}';
+        return "Client{" + "nom=" + nom + ", prenom=" + prenom + ", id=" + id + ", adr=" + adr + '}';
+    }
+
+    public Client(Integer id) {
+        this.id = id;
     }
     
 }

@@ -12,16 +12,16 @@ import java.util.Objects;
  * @author ZNJ
  */
 public class Facture {
-   private  String id;
+   private  Integer id;
    private Client client ;
    private Categorie cat ;
-   private  float montanttot;
+   private  float   montanttot;
 
     public Facture() {
     }
    
 
-    public Facture(String id, Client client, Categorie cat, float montanttot) {
+    public Facture(Integer id, Client client, Categorie cat, float montanttot) {
         this.id = id;
         this.client = client;
         this.cat = cat;
@@ -32,11 +32,19 @@ public class Facture {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public String getId() {
+    public Facture(Client c, Categorie cat) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Facture(Client c, Categorie cat, int i) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

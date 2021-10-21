@@ -11,7 +11,6 @@ import gestiondesfactures.entite.Categorie;
 import gestiondesfactures.entite.Client;
 import gestiondesfactures.entite.Facture;
 import gestiondesfactures.utis.MyConnection;
-import java.sql.Array;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -48,8 +47,8 @@ public class ServiceFacture {
         try {
             String req = "INSERT INTO facture (client,cat,montanttot) values (?,?,?)";
             PreparedStatement pst = (PreparedStatement) cnx.prepareStatement(req);
-            pst.setArray(1, (Array) f.getClient());
-            pst.setArray(2, (Array) f.getCat());
+            pst.setInt(1,f.getClient().getId());
+            pst.setString(2,f.getCat().getNomchap());
             pst.setFloat(3, f.getMontanttot());
             pst.executeUpdate();
             System.out.println("facture added !");
@@ -65,7 +64,12 @@ public class ServiceFacture {
             Statement st = (Statement) cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while(rs.next()){
-                Facture f = new Facture(rs.getString(1), (Client)rs.getObject(2), (Categorie)rs.getObject(3), rs.getFloat(4));
+                Facture f = new Facture(rs.getInt(1), null, null, rs.getFloat(4));
+               
+                
+                f.setClient(getClientById(rs.getInt(2)));
+                f.setCat(getCategorieById(rs.getString(3)));
+                
                 factures.add(f);
             }
         } catch (SQLException ex) {
@@ -82,7 +86,7 @@ public class ServiceFacture {
        return s;
        
        }
-     public  void supprimerFacture1 (String id ){
+     public  void supprimerFacture1 (int id ){
   
         try {
             String req = "DELETE FROM facture WHERE id= '"+id+"'" ;
@@ -95,10 +99,10 @@ public class ServiceFacture {
            
         }
    }   
-     public  void modifierFacture1 (String id ,String clientId,String categoryId,float montanttot){
+     public  void modifierFacture1 (int id ,int clientId,String categoieId,float montanttot){
   
         try {
-            String req = "UPDATE `facture`SET client='"+clientId+"',categorie='"+categoryId+"',montanttot='"+montanttot+"',WHERE id='" + id + "'";
+            String req = "UPDATE `facture`SET client="+clientId+",cat='"+categoieId+"',montanttot="+montanttot+" WHERE id=" + id ;
               PreparedStatement pst = (PreparedStatement) cnx.prepareStatement(req);
                pst.executeUpdate();
          
@@ -107,4 +111,38 @@ public class ServiceFacture {
            
         }
    } 
+
+    private Client getClientById(int id) {
+    try {
+            String req = "SELECT * FROM `client` WHERE `id` = "+id;
+//            PreparedStatement pst = (PreparedStatement) cnx.prepareStatement(req);
+//            pst.setInt(1,id);
+            Statement st = (Statement) cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            while(rs.next()){
+                Client client = new Client(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getString(4));
+          return client;
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return null;    
+    }
+    private Categorie getCategorieById(String nomchap) {
+    try {
+            String req = "SELECT * FROM `categorie` WHERE `nomchap` = '"+nomchap+"'";
+//            String req = "SELECT * FROM `categorie` WHERE `nomchap` = 'tunis';";
+//            PreparedStatement pst = (PreparedStatement) cnx.prepareStatement(req);
+//            pst.setString(tunis,nomchap);
+            Statement st = (Statement) cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            while(rs.next()){
+                Categorie cat = new Categorie(rs.getString(1), rs.getString(2), rs.getFloat(3));
+          return cat;
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return null;
+}
 }

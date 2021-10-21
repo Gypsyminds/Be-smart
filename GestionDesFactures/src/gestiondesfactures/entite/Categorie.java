@@ -11,14 +11,14 @@ package gestiondesfactures.entite;
  */
 public class Categorie {
     private String nom_cat;
-    private String[] nomchap;
+    private String nomchap;
     private float prixcat ;
 
     public Categorie() {
     }
     
 
-    public Categorie(String nom_cat, String[] nomchap, float prixcat) {
+    public Categorie(String nom_cat, String nomchap, float prixcat) {
         this.nom_cat = nom_cat;
         this.nomchap = nomchap;
         this.prixcat = prixcat;
@@ -32,11 +32,11 @@ public class Categorie {
         this.nom_cat = nom_cat;
     }
 
-    public String[] getNomchap() {
+    public String getNomchap() {
         return nomchap;
     }
 
-    public void setNomchap(String[] nomchap) {
+    public void setNomchap(String nomchap) {
         this.nomchap = nomchap;
     }
 
@@ -48,6 +48,12 @@ public class Categorie {
         this.prixcat = prixcat;
     }
 
+    public Categorie(String nomchap) {
+        this.nomchap = nomchap;
+    }
+
+    
+    
     @Override
     public String toString() {
         return "Categorie{" + "nom_cat=" + nom_cat + ", nomchap=" + nomchap + ", prixcat=" + prixcat + '}';

@@ -112,7 +112,7 @@ public class ServiceFacture {
         }
    } 
 
-    private Client getClientById(int id) {
+    public Client getClientById(int id) {
     try {
             String req = "SELECT * FROM `client` WHERE `id` = "+id;
 //            PreparedStatement pst = (PreparedStatement) cnx.prepareStatement(req);
@@ -128,7 +128,7 @@ public class ServiceFacture {
         }
         return null;    
     }
-    private Categorie getCategorieById(String nomchap) {
+    public Categorie getCategorieById(String nomchap) {
     try {
             String req = "SELECT * FROM `categorie` WHERE `nomchap` = '"+nomchap+"'";
 //            String req = "SELECT * FROM `categorie` WHERE `nomchap` = 'tunis';";

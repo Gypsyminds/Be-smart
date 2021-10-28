@@ -12,6 +12,12 @@ import java.util.Objects;
  * @author ZNJ
  */
 public class Facture {
+
+    public Facture(Client client, Categorie cat, float montanttot) {
+        this.client = client;
+        this.cat = cat;
+        this.montanttot = montanttot;
+    }
    private  Integer id;
    private Client client ;
    private Categorie cat ;

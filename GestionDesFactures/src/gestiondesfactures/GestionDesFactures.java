@@ -24,20 +24,20 @@ public class GestionDesFactures {
         MyConnection.getMyCnx();
         Facture f=new Facture();
         Client c=new Client();
-         c.setId(1);
+         c.setId(2);
        c.setAdr("ezzahra");
         c.setNom("ahmed");
        c.setPrenom("gassem");
         f.setClient(c);
         Categorie cat=new Categorie();
-        cat.setNomchap("france");
+        cat.setNomchap("tunis");
         f.setCat(cat);
-        f.setMontanttot(3000f);
+        f.setMontanttot(500f);
         ServiceFacture sv=new ServiceFacture(); 
 //        sv.ajouterFacture1(f);
 //        sv.getFactures();
 //        System.out.println(sv.getFactures());
-//       sv.supprimerFacture1(605);
+//       sv.supprimerFacture1(613);
 //sv.modifierFacture1(606, 2, "france", 40000);
        
         
